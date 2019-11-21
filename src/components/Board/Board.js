@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import TrelloList from "../Cards/TrelloList";
+import List from "../Card/List";
 import { connect } from "react-redux";
-import TrelloCreate from "../Cards/TrelloCreate";
+import Create from "../Card/Create";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { setActiveBoard } from "../../actions/Boards/boardActions";
@@ -15,9 +15,9 @@ const ListsContainer = styled.div`
 
 // TODO: Fix performance issue
 
-class TrelloBoard extends PureComponent {
+class Board extends PureComponent {
   componentDidMount() {
-    // set active trello board here
+    // set active  board here
     const { boardID } = this.props.match.params;
 
     this.props.dispatch(setActiveBoard(boardID));
@@ -67,7 +67,7 @@ class TrelloBoard extends PureComponent {
                   const listCards = list.cards.map(cardID => cards[cardID]);
 
                   return (
-                    <TrelloList
+                    <List
                       listID={list.id}
                       key={list.id}
                       title={list.title}
@@ -76,11 +76,11 @@ class TrelloBoard extends PureComponent {
                     />
                   );
                 } else {
-                  return  <TrelloList/>;
+                  return  <List/>;
                 }
               })}
               {provided.placeholder}
-              <TrelloCreate list />
+              <Create list />
             </ListsContainer>
           )}
         </Droppable>
@@ -95,4 +95,4 @@ const mapStateToProps = state => ({
   boards: state.boards
 });
 
-export default connect(mapStateToProps)(TrelloBoard);
+export default connect(mapStateToProps)(Board);

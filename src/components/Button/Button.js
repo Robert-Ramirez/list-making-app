@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import ButtonStyle from '@material-ui/core/Button';
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(ButtonStyle)`
   && {
     color: white;
     background: #5aac44;
   }
 `;
 
-const TrelloButton = ({ children, onClick }) => {
+const Button = ({ children, onClick }) => {
   return (
     <StyledButton variant="contained" onMouseDown={onClick}>
       {children}
@@ -17,4 +17,4 @@ const TrelloButton = ({ children, onClick }) => {
   );
 };
 
-export default TrelloButton;
+export default Button;

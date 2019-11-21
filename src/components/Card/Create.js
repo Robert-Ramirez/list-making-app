@@ -1,14 +1,14 @@
 import React from "react";
 import Icon from "@material-ui/core/Icon";
-import TrelloButton from "./TrelloButton";
+import Button from "../Button/Button";
 import { connect } from "react-redux";
 import { addCard } from "../../actions/Cards/cardsActions";
 import { addList } from "../../actions/Cards/listsActions";
 import styled from "styled-components";
-import TrelloForm from "./TrelloForm";
-import TrelloOpenForm from "./TrelloOpenForm";
+import Form from "../Form/Form";
+import OpenForm from "../Form/OpenForm";
 
-class TrelloCreate extends React.PureComponent {
+class Create extends React.PureComponent {
   state = {
     formOpen: false,
     text: ""
@@ -93,21 +93,21 @@ class TrelloCreate extends React.PureComponent {
     const { text } = this.state;
     const { list } = this.props;
     return this.state.formOpen ? (
-      <TrelloForm
+      <Form
         text={text}
         onChange={this.handleInputChange}
         closeForm={this.closeForm}
       >
-        <TrelloButton onClick={list ? this.handleAddList : this.handleAddCard}>
+        <Button onClick={list ? this.handleAddList : this.handleAddCard}>
           {list ? "Add List" : "Add Card"}
-        </TrelloButton>
-      </TrelloForm>
+        </Button>
+      </Form>
     ) : (
-      <TrelloOpenForm list={list} onClick={this.openForm}>
+      <OpenForm list={list} onClick={this.openForm}>
         {list ? "Add another list" : "Add another card"}
-      </TrelloOpenForm>
+      </OpenForm>
     );
   }
 }
 
-export default connect()(TrelloCreate);
+export default connect()(Create);

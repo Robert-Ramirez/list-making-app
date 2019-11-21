@@ -34,7 +34,7 @@ const StyledIcon = styled(Icon)`
   cursor: pointer;
 `;
 
-const TrelloForm = React.memo(
+const Form = React.memo(
   ({ list, text = '', onChange, closeForm, children }) => {
     const placeholder = list
       ? 'Enter list title...'
@@ -60,4 +60,4 @@ const TrelloForm = React.memo(
   }
 );
 
-export default TrelloForm;
+export default Form;

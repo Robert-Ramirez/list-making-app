@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addBoard } from '../../actions/Boards/boardActions';
-import BoardThumbnail from './BoardThumbnail';
+import { addBoard } from '../actions/Boards/boardActions';
+import BoardThumbnail from './Board/BoardThumbnail';
 
 const Thumbnails = styled.div`
   flex: 1;
@@ -88,8 +88,8 @@ const Home = ({ boards, boardOrder, dispatch }) => {
 
   return (
     <HomeContainer>
-      <Thumbnails>{renderBoards()}</Thumbnails>
       {renderCreateBoard()}
+      <Thumbnails>{renderBoards()}</Thumbnails>
     </HomeContainer>
   );
 };

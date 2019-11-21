@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Icon from '@material-ui/core/Icon';
 import { editTitle, deleteList } from '../../actions/Cards/listsActions';
-import TrelloCreate from './TrelloCreate';
-import TrelloCard from './TrelloCard';
+import Create from './Create';
+import Card from './Card';
 
 const ListContainer = styled.div`
   background-color: #dfe3e6;
@@ -50,7 +50,7 @@ const ListTitle = styled.h4`
   }
 `;
 
-const TrelloList = ({ title, cards, listID, index, dispatch }) => {
+const List = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -112,7 +112,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                 </div>
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {cards.map((card, index) => (
-                    <TrelloCard
+                    <Card
                       key={card.id}
                       text={card.text}
                       id={card.id}
@@ -121,7 +121,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                     />
                   ))}
                   {provided.placeholder}
-                  <TrelloCreate listID={listID} />
+                  <Create listID={listID} />
                 </div>
               </div>
             )}
@@ -132,4 +132,4 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   );
 };
 
-export default connect()(TrelloList);
+export default connect()(List);

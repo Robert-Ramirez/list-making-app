@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Card from '@material-ui/core/Card';
+import CardStyle from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
-import TrelloForm from './TrelloForm';
+import Form from '../Form/Form';
 import { editCard, deleteCard } from '../../actions/Cards/cardsActions';
-import TrelloButton from './TrelloButton';
+import Button from '../Button/Button';
 
 const CardContainer = styled.div`
   margin: 0 0 8px 0;
@@ -47,7 +47,7 @@ const DeleteButton = styled(Icon)`
   }
 `;
 
-const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
+const Card = React.memo(({ text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
 
@@ -73,9 +73,9 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
 
   const renderEditForm = () => {
     return (
-      <TrelloForm text={cardText} onChange={handleChange} closeForm={closeForm}>
-        <TrelloButton onClick={saveCard}>Save</TrelloButton>
-      </TrelloForm>
+      <Form text={cardText} onChange={handleChange} closeForm={closeForm}>
+        <Button onClick={saveCard}>Save</Button>
+      </Form>
     );
   };
 
@@ -89,7 +89,7 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
             ref={provided.innerRef}
             onDoubleClick={() => setIsEditing(true)}
           >
-            <Card>
+            <CardStyle>
               <EditButton
                 onMouseDown={() => setIsEditing(true)}
                 fontSize="small"
@@ -103,7 +103,7 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
               <CardContent>
                 <Typography>{text}</Typography>
               </CardContent>
-            </Card>
+            </CardStyle>
           </CardContainer>
         )}
       </Draggable>
@@ -113,4 +113,4 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
   return isEditing ? renderEditForm() : renderCard();
 });
 
-export default connect()(TrelloCard);
+export default connect()(Card);

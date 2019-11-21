@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '@material-ui/core/Icon';
 import styled from 'styled-components';
 
-const TrelloOpenForm = ({ list, children, onClick }) => {
+const OpenForm = ({ list, children, onClick }) => {
   const buttonTextOpacity = list ? 1 : 0.5;
   const buttonTextColor = list ? 'white' : 'inherit';
   const buttonTextBackground = list ? 'rgba(0,0,0,.15)' : 'inherit';
@@ -30,4 +30,4 @@ const TrelloOpenForm = ({ list, children, onClick }) => {
   );
 };
 
-export default TrelloOpenForm;
+export default OpenForm;
